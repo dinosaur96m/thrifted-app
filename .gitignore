@@ -1,2 +1,4 @@
 node_modules
-congfig
+.env
+auth.md 
+project2setup.md
