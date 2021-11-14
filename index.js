@@ -40,6 +40,8 @@ app.use((req, res, next) => {
 
 // controllers middleware 
 app.use('/auth', require('./controllers/auth'))
+app.use('/user', require('./controllers/user') )
+app.use('/items', require('./controllers/items') )
 
 
 // home route
@@ -47,13 +49,12 @@ app.get('/', (req, res)=>{
     res.render('home')
 })
 
-// profile route
-app.get('/profile', isLoggedIn, (req, res)=>{
-    res.render('profile')
-})
+// // profile route
+// app.get('/profile', isLoggedIn, (req, res)=>{
+//     res.render('profile')
+// })
 
 
 app.listen(3000, ()=>{
     console.log("auth_practice running on port 3000")
-    console.log(`process.env.SUPER_SECRET_SECRET: ${process.env.SUPER_SECRET_SECRET}`)
 })
