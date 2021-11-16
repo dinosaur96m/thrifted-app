@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       price: {
-        type: Sequelize.REAL
+        type: Sequelize.NUMBER
       },
       imgUrl: {
         type: Sequelize.STRING
@@ -30,9 +30,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       cartId: {
-        type: Sequelize.INTEGER
-      },
-      storeId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

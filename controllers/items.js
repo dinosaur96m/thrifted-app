@@ -54,7 +54,7 @@ router.get('/', (req, res) => {
 // })
 
 router.get('/new', (req, res) => {
-    res.send('here is a form for creating new iterms')
+    res.render('items/new')
 })
 
 router.get('/:itemId', (req, res) => {

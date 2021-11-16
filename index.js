@@ -55,7 +55,6 @@ app.get('/', (req, res)=>{
 // app.get('/profile', isLoggedIn, (req, res)=>{
 //     res.render('profile')
 // })
-db.queryInterface.removeColumn('items', 'storeId')
 
 
 app.listen(3000, ()=>{

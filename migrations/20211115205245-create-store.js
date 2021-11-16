@@ -1,7 +1,8 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('stores', {
+    await queryInterface.createTable('carts', {
+      //used migration to rename to 'carts'
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -22,6 +23,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('stores');
+    await queryInterface.dropTable('carts');
   }
 };

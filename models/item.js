@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.item.belongsTo(models.user, {hooks: true})
+      models.item.belongsTo(models.cart)
     }
   };
   item.init({
@@ -22,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
     available: DataTypes.BOOLEAN,
     userId: DataTypes.INTEGER,
     cartId: DataTypes.INTEGER,
-    storeIdK: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'item',
