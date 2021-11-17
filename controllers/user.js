@@ -17,7 +17,10 @@ router.get('/:userName', isLoggedIn, (req, res)=>{
 
 //cart route
 router.get('/cart/:userName', isLoggedIn, (req, res) => {
-    res.send(`welcome to ${req.params.userName}'s cart!'`)
+    db.item.findAll({where: {cartId: req.user.id}})
+    .then(allItems => {
+        res.render('user/cart', {displayName: req.user.name, allItems})
+        })
 })
 
 //delete route
