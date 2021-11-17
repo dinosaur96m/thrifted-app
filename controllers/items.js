@@ -15,7 +15,10 @@ cloudinary.config({
 });
 
 router.get('/', (req, res) => {
-    res.send('here you can browse all available items')
+    db.item.findAll({where: {available: true}})
+    .then(allItems => {
+        res.render('items/idx', {allItems})
+    })
 })
 
 router.post('/', isLoggedIn, (req, res) => {

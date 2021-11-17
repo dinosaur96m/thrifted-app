@@ -51,10 +51,10 @@ app.get('/', (req, res)=>{
     res.render('home')
 })
 
-// // profile route
-// app.get('/profile', isLoggedIn, (req, res)=>{
-//     res.render('profile')
-// })
+// profile route
+app.get('/profile', isLoggedIn, (req, res)=>{
+    res.render('profile')
+})
 
 
 app.listen(3000, ()=>{
