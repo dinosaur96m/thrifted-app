@@ -1,4 +1,8 @@
-<h1><%= currentUser.name %>'s Store </h1>
+<h1><%= displayName %>'s Store </h1>
 
-<img src="" alt="">
-<img src="" alt="">
+<% allItems.forEach(item => { %>
+    <h2 id="brand-type"><%= item.brand %> <%= item.type %></h2>
+    <img src="<%= item.imgUrl %>" alt="<%= item.type %>">
+    <h3 id="size">size: <%= item.size %></h3>
+    <h3 id="price">$<%= item.price %></h3>
+<% }) %> 

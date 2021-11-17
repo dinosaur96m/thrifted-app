@@ -7,19 +7,12 @@ const db = require('../models')
 // user store (profile) route
 //implement the isLoggedIn param
 router.get('/:userName', isLoggedIn, (req, res)=>{
-
-    cosnole.log(`current user ${currentUser.name}`)
-    db.user.findOne({where: {name: currentUser.name}})
-    .then(foundUser => {
-        const userId = foundUser.id
-        return userId
-    })
-    .then(userId => {
-        db.item.findAll({where: {userId: userId}})
-        .then(allItems => {
-            res.render('/user/store', {allItems})
+    console.log(`current user ${req.user.name}`)
+    console.log(`currrent user id: ${req.user.id}`)
+    db.item.findAll({where: {userId: req.user.id}})
+    .then(allItems => {
+        res.render('user/store', {displayName: req.user.name, allItems})
         })
-    })
 })
 
 //cart route
