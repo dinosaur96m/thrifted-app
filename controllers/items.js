@@ -14,6 +14,7 @@ cloudinary.config({
     secure: true
 });
 
+//render index of all available items
 router.get('/', (req, res) => {
     db.item.findAll({where: {available: true}})
     .then(allItems => {
@@ -21,6 +22,7 @@ router.get('/', (req, res) => {
     })
 })
 
+//post a new item to the db and item index
 router.post('/', isLoggedIn, (req, res) => {
     // Node.js SDK Uploader function returns a Promise
     cloudinary.uploader
@@ -58,35 +60,22 @@ router.post('/', isLoggedIn, (req, res) => {
     res.redirect('/items')
 })
 
+//render individual item
+//TO DO: add edit button visible only to the item's creator
+router.get('/:itemId', (req, res) => {
+    db.item.findByPk(req.params.itemId)
+    .then(foundItem => { 
+        res.render('items/item', {item: foundItem})
+    })
+})
+
+//render form for selling a new item
 router.get('/new', (req, res) => {
     res.render('items/new')
 })
 
-router.get('/:itemId', (req, res) => {
-    db.item.findByPk(1)
-    .then(foundItem => { 
-    console.log(`foundItem.imgUrl: ${foundItem.imgUrl} foundItem.type: ${foundItem.type}`)
-        const imgUrl = foundItem.imgUrl
-        const  type = foundItem.type
-        res.render('items/item', {imgUrl, type})
-    })
-})
-
-
-router.get('/new', (req, res) => {
-    res.render('items/new')
-})
-
-router.get('/:itemId', (req, res) => {
-    db.item.findByPk(1)
-    .then(foundItem => { 
-    console.log(`foundItem.imgUrl: ${foundItem.imgUrl} foundItem.type: ${foundItem.type}`)
-        const imgUrl = foundItem.imgUrl
-        const  type = foundItem.type
-        res.render('items/item', {imgUrl, type})
-    })
-})
-
+//render form for editing an item
+//TO DO: autofill form with item data
 router.get('/edit/:itemId', isLoggedIn, (req, res) => {
     res.send(`here is a form for editing the ${req.params.itemId}th item in the db, created by curretnly loggind in user`)
     //if NO ONE is logged in, isLoggedIn redirects to home route
