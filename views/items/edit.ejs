@@ -1,0 +1,17 @@
+<!-- form for adding a new item to the db -->
+<form action="/items" method="PUT">
+    <label for="itemType">Garment Type</label>
+    <input type="text" id="itemType" name="type" value=<%= item.type %>>
+
+    <label for="itemSize">Size</label>
+    <input type="text" id="itemSize" name="size" value=<%= item.size %>>
+
+    <label for="itemBrand">Brand</label>
+    <input type="text" id="itemBrand" name="brand" value=<%= item.brand %>>
+
+    <label for="itemPrice">Price</label>
+    <input type="number" min="0" step=".10" id="itemPrice" name="price" value=<%= item.price%>>
+
+    <input type="submit" value="update item">
+    <img src=<%= item.imgUrl %> alt="<%=item.brand%> <%=item.type%>">
+</form> 

@@ -4,9 +4,19 @@ const app = express()
 const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const passport = require('./config/ppConfig')
+const axios = require('axios')
+
+//require multer
+const multer = require('multer');
+const upload = multer({ dest: './uploads/' });
+
 
 //from cloudinary docs
-const cloudinary = require('cloudinary').v2
+// const cloudinary = require('./config/cloudConfig')\
+const cloudinary = require('cloudinary')
+// Configure your cloud name, API key and API secret:
+cloudinary.config(process.env.CLOUDINARY_URL)
+
 const signUploadFormRouter = require('./controllers/signUploadForm')
 const createError = require('http-errors')
 const path = require('path')
@@ -89,6 +99,14 @@ app.get('/', (req, res)=>{
 app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
+
+app.post('/photo', upload.single('myFile'), function(req, res) {
+    cloudinary.uploader.upload(req.file.path, function(result) {
+      console.log(result)
+      res.send(result);
+    });
+  });
+  
 
 
 app.listen(3000, ()=>{

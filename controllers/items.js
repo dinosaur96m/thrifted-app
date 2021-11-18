@@ -1,13 +1,19 @@
 const express = require('express')
+const app = express()
 const isLoggedIn = require('../middleware/isLoggedIn')
-const cloudinaryUp = require('../middleware/cloudinaryUp')
-const router = express.Router()
-const cloudinary = require('cloudinary').v2
-require('../config/cloudConfig')
 const db = require('../models')
+const router = express.Router()
+//require and config cloudinary
+const cloudinary = require('cloudinary')
+cloudinary.config(process.env.CLOUDINARY_URL)
+
+//require multer
+const multer = require('multer');
+const upload = multer({ dest: './uploads/' });
 
 
-
+//middleware
+app.use(express.json())
 
 
 //render index of all available items
@@ -21,9 +27,26 @@ router.get('/', (req, res) => {
     })
 })
 
-//post a new item to the db and item index
-router.post('/new', isLoggedIn, (req, res) => {
-    console.log(`req.body: ${JSON.stringify(req.body)}`)
+//render form for selling a new item
+router.get('/new', (req, res) => {
+    res.render('items/new')
+})
+
+
+router.post('/', upload.single('myFile'), function(req, res) {
+    cloudinary.uploader.upload(req.file.path, function(result) {
+      console.log(result)
+      console.log(result.url)
+      res.send(result);
+    });
+  });
+
+//post to uploads with multer?
+// router.post('/', upload.single('myFile'), function (req, res) {
+//     res.send(req.file)
+//     // console.log(`req.body: ${JSON.stringify(req.body)}`)
+
+
     //     db.item.create({
     //     size: req.body.size,
     //     type: req.body.type,
@@ -39,24 +62,34 @@ router.post('/new', isLoggedIn, (req, res) => {
     //     console.log(`new item added: ${JSON.stringify(createdItem)}`)
     // })
     // res.send(url)
-    res.redirect('/items')
-})
+    // res.redirect('/items')
+// })
 
-//render form for selling a new item
-router.get('/new', (req, res) => {
-    res.render('items/new')
-})
+//post to cloudinary
+router.post('/', upload.single('myFile'), function(req, res) {
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    console.log(result)
+    res.send(result);
+  });
+});
+
+
 
 
 
 //render form for editing an item
 //TO DO: autofill form with item data
 router.get('/edit/:itemId', isLoggedIn, (req, res) => {
-    res.send(`here is a form for editing the ${req.params.itemId}th item in the db, created by curretnly loggind in user`)
+    db.item.findByPk(req.params.itemId)
+    .then(foundItem => { 
+        res.render('items/edit.ejs', {item: foundItem})
+    })
     //if NO ONE is logged in, isLoggedIn redirects to home route
     //add redirect if the item's creator is not logged in
         //check express-session docs for how to access the currently logged in user
 })
+
+router.put
 
 
 //render individual item

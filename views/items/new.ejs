@@ -1,27 +1,9 @@
 <h1>Sell</h1>
 
-<h2>Upload Files Using a Form</h2>
-<p>Perform a signed upload using a standard HTML form.</p>
-<p>First, choose your files, then click "Upload Files" to perform a signed upload. 
-  Two eager transformations are performed on the uploaded files.</p>
-
-form from cloudinary docs 
-<form method="POST" enctype="multipart/form-data">
-  <input type="file" name="files[]" multiple >
-  <input type="submit" value="Upload Files" name="submit" class="submit">
-</form>
-
-<div><img id="uploaded_form" /></div>
-
-<h3>Upload response:</h3>
-<pre class="data" id="formdata">
-
-</pre>
-
-
-
-<!-- form for adding a new item to the db -->
-<!-- <form action="/items" method="POST">
+<form enctype="multipart/form-data" action="/items" method="POST">
+    <label for="imgRoute">Select Image to upload</label>
+    <input type="file" name="myFile">
+ 
     <label for="itemType">Garment Type</label>
     <input type="text" id="itemType" name="type">
 
@@ -34,22 +16,7 @@ form from cloudinary docs
     <label for="itemPrice">Price</label>
     <input type="number" min="0" step=".10" id="itemPrice" name="price">
 
-    <label for="imgRoute">Image Route</label>
-    <input type="text" id="imgRoute" name="route">
+    <input type="submit" class="btn btn-primary" value="add item to your store">
 
-    <input type="submit" value="add to your store">
-</form>  -->
+  </form>
 
-
-
-<!-- local upload instantiation -->
-<script src="../../uploadClientForm.js" type="text/javascript"></script>
-
-<!-- size: DataTypes.STRING,
-type: DataTypes.STRING,
-brand: DataTypes.STRING,
-price: DataTypes.REAL,
-imgUrl: DataTypes.STRING,
-available: DataTypes.BOOLEAN,
-userId: DataTypes.INTEGER,
-cartId: DataTypes.INTEGER, -->

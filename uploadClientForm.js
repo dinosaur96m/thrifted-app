@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-    
+        console.log('uploadClientForm running')
         const files = document.querySelector("[type=file]").files;
         const formData = new FormData();
     
