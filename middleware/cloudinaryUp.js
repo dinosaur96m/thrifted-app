@@ -1,14 +1,10 @@
 const cloudinary = require('cloudinary').v2
+require('../config/cloudConfig');
 
 //API, cloudinary
-cloudinary.config({ 
-    cloud_name: 'dunp6efgl', 
-    api_key: process.env.API_KEY, 
-    api_secret: process.env.API_SECRET,
-    secure: true
-});
 
-module.exports = (req, res, url, next) => {
+
+module.exports = (req, res, next) => {
 
     // if (!req.user) {
     //     req.flash('error', 'You must be logged in to access that page.')
