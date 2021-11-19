@@ -1,8 +1,15 @@
 <h1><%= displayName %>'s Store </h1>
 
-<% allItems.forEach(item => { %>
-    <h2 id="brand-type"><%= item.brand %> <%= item.type %></h2>
-    <img src="<%= item.imgUrl %>" alt="<%= item.type %>">
-    <h3 id="size">size: <%= item.size %></h3>
-    <h3 id="price">$<%= item.price %></h3>
-<% }) %> 
+<ul>
+    <% allItems.forEach(item => { %>
+        <li>
+            <h2 id="brand-type"><%= item.brand %> <%= item.type %></h2>
+            <img src="<%= item.imgUrl %>" alt="<%= item.type %>">
+            <h3 id="size">size: <%= item.size %></h3>
+            <h3 id="price">$<%= item.price %></h3>
+            <form action="/items/<%= item.id %>/?_method=DELETE" method=POST>
+                <input type="submit" value="Delete Item">    
+            </form>
+        </li>
+    <% }) %> 
+</ul>

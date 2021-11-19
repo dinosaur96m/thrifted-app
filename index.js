@@ -8,11 +8,6 @@ const axios = require('axios')
 //method override
 const methodOverride = require('method-override');
 
-//require multer
-const multer = require('multer');
-const upload = multer({ dest: './uploads/' });
-
-
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const db = require('./models')

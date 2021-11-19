@@ -100,5 +100,18 @@ router.get('/:itemId', (req, res) => {
     })
 })
 
+//delete item
+router.delete('/:itemId', isLoggedIn, (req,res) => {
+    db.item.findOne({where: {id: req.params.itemId }})
+    .then( foundItem => {
+        foundItem.destroy()
+        console.log(req.params.itemId, "th item destroyed")
+        res.redirect(`/user/${req.user.name}`)
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
 
 module.exports = router
