@@ -35,17 +35,17 @@ router.get('/new', (req, res) => {
 
 router.post('/', isLoggedIn, upload.single('myFile'), function(req, res) {
     cloudinary.uploader.upload(req.file.path, function(result) {
-      console.log(result)
-      console.log(result.url)
-      db.item.create({
-        size: req.body.size,
-        type: req.body.type,
-        brand: req.body.brand,
-        price: req.body.price,
-        imgUrl: result.url,
-        available: true,
-        userId: req.user.id,
-        cartId: null,
+        console.log(result)
+        console.log(result.url)
+        db.item.create({
+            size: req.body.size,
+            type: req.body.type,
+            brand: req.body.brand,
+            price: req.body.price,
+            imgUrl: result.url,
+            available: true,
+            userId: req.user.id,
+            cartId: null,
         })
         .then(createdItem => {
             console.log(`new item added: ${JSON.stringify(createdItem)}`)
@@ -53,15 +53,7 @@ router.post('/', isLoggedIn, upload.single('myFile'), function(req, res) {
         })
     
     });
-  });
-
-//post to uploads with multer?
-// router.post('/', upload.single('myFile'), function (req, res) {
-//     res.send(req.file)
-//     // console.log(`req.body: ${JSON.stringify(req.body)}`)
-
-
-// })
+});
 
 
 //render form for editing an item
@@ -76,8 +68,28 @@ router.get('/edit/:itemId', isLoggedIn, (req, res) => {
         //check express-session docs for how to access the currently logged in user
 })
 
-router.put
-
+router.put('/:itemId', isLoggedIn, upload.single('myFile'), (req, res) => {
+    cloudinary.uploader.upload(req.file.path, function(result) {
+        console.log(result)
+        console.log(result.url)
+        db.item.findOne({where: {}})
+        .then( foundItem => {
+            // foundItem.size: req.body.size
+            // foundItem.type: req.body.type,
+            // foundItem.brand: req.body.brand,
+            // foundItem.price: req.body.price,
+            // foundItem.imgUrl: result.url,
+            // foundItem.available: true,
+            // foundItem.userId: req.user.id,
+            // foundItem.cartId: null,
+        })
+        .then(editedItem => {
+            console.log(`new item added: ${JSON.stringify(editedItem)}`)
+            res.redirect(`/items/${createdItem.id}`)
+        })
+    });
+    console.log(req.body)
+})
 
 //render individual item
 //TO DO: add edit button visible only to the item's creator

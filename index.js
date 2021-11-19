@@ -11,17 +11,6 @@ const multer = require('multer');
 const upload = multer({ dest: './uploads/' });
 
 
-//from cloudinary docs
-// const cloudinary = require('./config/cloudConfig')\
-const cloudinary = require('cloudinary')
-// Configure your cloud name, API key and API secret:
-cloudinary.config(process.env.CLOUDINARY_URL)
-
-const signUploadFormRouter = require('./controllers/signUploadForm')
-const createError = require('http-errors')
-const path = require('path')
-//^^from cloudinary docs
-
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const db = require('./models')
@@ -47,31 +36,6 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-////////////////////////////
-//////cloudinary docs middleware////////////////// 
-/////////////////////////////
-app.use(express.json())
-app.use(express.static(path.join(__dirname, 'public')))
-// //upload sigining API
-app.use('/controllers/signUploadForm', signUploadFormRouter)
-// //static files
-app.use(express.static('public'))
-
-//catch 404 and forward to error handler 
-// app.use(function (req, res, next) {
-//     next(createError(404))
-// })
-// // //error handler
-// app.use(function (err, req, res, next) {
-//     // set locals, only providing error in development
-//     res.locals.message = err.message
-//     res.locals.error = req.app.get('env') === 'development' ? err : {}
-//     // render the error page
-//     res.status(err.status || 500)
-//     // res.render('error')
-////^^the above error code is from cloudinary docs but stalls out my app and breaks it
-////////////////////////////////////////////
-/////////////////////////////
 
 // flash middleware (must go AFTER session middleware)
 app.use(flash())
@@ -100,12 +64,7 @@ app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
 
-app.post('/photo', upload.single('myFile'), function(req, res) {
-    cloudinary.uploader.upload(req.file.path, function(result) {
-      console.log(result)
-      res.send(result);
-    });
-  });
+
   
 
 
