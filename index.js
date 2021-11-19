@@ -5,6 +5,8 @@ const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const passport = require('./config/ppConfig')
 const axios = require('axios')
+//method override
+const methodOverride = require('method-override');
 
 //require multer
 const multer = require('multer');
@@ -15,8 +17,9 @@ const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const db = require('./models')
 
-//upload signing API
 
+//method override
+app.use(methodOverride('_method'));
 
 // views (ejs and layouts) set up
 app.set('view engine', 'ejs')

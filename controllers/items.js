@@ -6,7 +6,8 @@ const router = express.Router()
 //require and config cloudinary
 const cloudinary = require('cloudinary')
 cloudinary.config(process.env.CLOUDINARY_URL)
-
+//method override
+const methodOverride = require('method-override');
 //require multer
 const multer = require('multer');
 const upload = multer({ dest: './uploads/' });
@@ -14,6 +15,7 @@ const upload = multer({ dest: './uploads/' });
 
 //middleware
 app.use(express.json())
+app.use(methodOverride('_method'));
 
 
 //render index of all available items
@@ -68,27 +70,25 @@ router.get('/edit/:itemId', isLoggedIn, (req, res) => {
         //check express-session docs for how to access the currently logged in user
 })
 
-router.put('/:itemId', isLoggedIn, upload.single('myFile'), (req, res) => {
-    cloudinary.uploader.upload(req.file.path, function(result) {
-        console.log(result)
-        console.log(result.url)
-        db.item.findOne({where: {}})
-        .then( foundItem => {
-            // foundItem.size: req.body.size
-            // foundItem.type: req.body.type,
-            // foundItem.brand: req.body.brand,
-            // foundItem.price: req.body.price,
-            // foundItem.imgUrl: result.url,
-            // foundItem.available: true,
-            // foundItem.userId: req.user.id,
-            // foundItem.cartId: null,
-        })
-        .then(editedItem => {
-            console.log(`new item added: ${JSON.stringify(editedItem)}`)
-            res.redirect(`/items/${createdItem.id}`)
-        })
-    });
-    console.log(req.body)
+router.put('/:itemId', isLoggedIn, (req, res) => {
+    console.log(`Item ID: ${req.params.itemId}`)
+    console.log(`req.body: ${JSON.parse(req.body)}`)    
+    // db.item.findOne({where: {id:req.body.id }})
+    // .then( foundItem => {
+    //     // foundItem.size: req.body.size
+    //     // foundItem.type: req.body.type,
+    //     // foundItem.brand: req.body.brand,
+    //     // foundItem.price: req.body.price,
+    //     // foundItem.imgUrl: result.url,
+    //     // foundItem.available: true,
+    //     // foundItem.userId: req.user.id,
+    //     // foundItem.cartId: null,
+    // })
+    // .then(editedItem => {
+    //     console.log(`new item added: ${JSON.stringify(editedItem)}`)
+    //     res.redirect(`/items/${createdItem.id}`)
+    // })
+    res.redirect('/items/:itemId')
 })
 
 //render individual item
