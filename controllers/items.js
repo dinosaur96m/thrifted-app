@@ -71,8 +71,8 @@ router.get('/edit/:itemId', isLoggedIn, (req, res) => {
 })
 
 router.put('/:itemId', isLoggedIn, (req, res) => {
-    console.log(`Item ID: ${req.params.itemId}`)
-    console.log(`req.body: ${JSON.parse(req.body)}`)    
+    console.log('Item Id:',req.params.itemId)
+    console.log('req.body:', req.body)   
     // db.item.findOne({where: {id:req.body.id }})
     // .then( foundItem => {
     //     // foundItem.size: req.body.size
@@ -88,7 +88,7 @@ router.put('/:itemId', isLoggedIn, (req, res) => {
     //     console.log(`new item added: ${JSON.stringify(editedItem)}`)
     //     res.redirect(`/items/${createdItem.id}`)
     // })
-    res.redirect('/items/:itemId')
+    res.redirect(`/items/${req.params.itemId}`)
 })
 
 //render individual item
