@@ -33,11 +33,25 @@ router.get('/new', (req, res) => {
 })
 
 
-router.post('/', upload.single('myFile'), function(req, res) {
+router.post('/', isLoggedIn, upload.single('myFile'), function(req, res) {
     cloudinary.uploader.upload(req.file.path, function(result) {
       console.log(result)
       console.log(result.url)
-      res.send(result);
+      db.item.create({
+        size: req.body.size,
+        type: req.body.type,
+        brand: req.body.brand,
+        price: req.body.price,
+        imgUrl: result.url,
+        available: true,
+        userId: req.user.id,
+        cartId: null,
+        })
+        .then(createdItem => {
+            console.log(`new item added: ${JSON.stringify(createdItem)}`)
+            res.redirect(`/items/${createdItem.id}`)
+        })
+    
     });
   });
 
@@ -47,34 +61,7 @@ router.post('/', upload.single('myFile'), function(req, res) {
 //     // console.log(`req.body: ${JSON.stringify(req.body)}`)
 
 
-    //     db.item.create({
-    //     size: req.body.size,
-    //     type: req.body.type,
-    //     brand: req.body.brand,
-    //     price: req.body.price,
-    //     imgUrl: 'test test, url not from cloudinary',
-    //     //SequelizeValidationError: string violation: imgUrl cannot be an array or an object
-    //     available: true,
-    //     userId: 1,
-    //     cartId: null,
-    // })
-    // .then(createdItem => {
-    //     console.log(`new item added: ${JSON.stringify(createdItem)}`)
-    // })
-    // res.send(url)
-    // res.redirect('/items')
 // })
-
-//post to cloudinary
-router.post('/', upload.single('myFile'), function(req, res) {
-  cloudinary.uploader.upload(req.file.path, function(result) {
-    console.log(result)
-    res.send(result);
-  });
-});
-
-
-
 
 
 //render form for editing an item
