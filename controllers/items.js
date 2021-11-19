@@ -73,22 +73,22 @@ router.get('/edit/:itemId', isLoggedIn, (req, res) => {
 router.put('/:itemId', isLoggedIn, (req, res) => {
     console.log('Item Id:',req.params.itemId)
     console.log('req.body:', req.body)   
-    // db.item.findOne({where: {id:req.body.id }})
-    // .then( foundItem => {
-    //     // foundItem.size: req.body.size
-    //     // foundItem.type: req.body.type,
-    //     // foundItem.brand: req.body.brand,
-    //     // foundItem.price: req.body.price,
-    //     // foundItem.imgUrl: result.url,
-    //     // foundItem.available: true,
-    //     // foundItem.userId: req.user.id,
-    //     // foundItem.cartId: null,
-    // })
-    // .then(editedItem => {
-    //     console.log(`new item added: ${JSON.stringify(editedItem)}`)
-    //     res.redirect(`/items/${createdItem.id}`)
-    // })
-    res.redirect(`/items/${req.params.itemId}`)
+    console.log('req.user.id:', req.user.id)
+    db.item.findOne({where: {id: req.params.itemId }})
+    .then( foundItem => {
+        foundItem.set({
+            size: req.body.size,
+            type: req.body.type,
+            brand: req.body.brand,
+            price: req.body.price,
+        })
+        foundItem.save()
+        console.log(`item edited ${JSON.stringify(foundItem)}`)
+        res.redirect(`/items/${foundItem.id}`)
+    })
+    .catch(error => {
+        console.log(error)
+    })
 })
 
 //render individual item
