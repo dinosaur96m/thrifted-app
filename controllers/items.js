@@ -22,7 +22,7 @@ app.use(methodOverride('_method'));
 router.get('/', (req, res) => {
     db.item.findAll({where: {available: true}})
     .then(allItems => {
-        res.render('items/idx', {allItems})
+        res.render('items/idx', {allItems, user: req.user.name})
     })
     .catch(error => {
         console.log(error)

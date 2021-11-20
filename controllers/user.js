@@ -23,6 +23,22 @@ router.get('/cart/:userName', isLoggedIn, (req, res) => {
         })
 })
 
+router.post('/cart/:userName', isLoggedIn, (req, res) => {
+    db.item.findOne({where: {id: req.body.itemId}})
+    .then(foundItem => {
+        foundItem.set({
+            cartId: req.user.id,
+            available: false,
+        })
+        foundItem.save()
+        console.log('item moved to cart ', foundItem.cartId)
+        res.redirect(`/user/cart/${req.user.name}`)
+    })
+    .catch(error => {
+        console.log(error)
+    })
+})
+
 //delete route
 
 

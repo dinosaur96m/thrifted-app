@@ -5,4 +5,8 @@
     <img src="<%= item.imgUrl %>" alt="<%= item.type %>">
     <h3 id="size">size: <%= item.size %></h3>
     <h3 id="price">$<%= item.price %></h3>
+    <form action="/user/cart/<%= user %>" method="POST">
+        <input type="number" value="<%= item.id %>" style="visibility: hidden;" name="itemId">
+        <input type="submit" value="Add to Cart"> 
+    </form>
 <% }) %> 
