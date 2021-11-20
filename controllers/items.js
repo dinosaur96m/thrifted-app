@@ -19,7 +19,7 @@ app.use(methodOverride('_method'));
 
 
 //render index of all available items
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
     db.item.findAll({where: {available: true}})
     .then(allItems => {
         res.render('items/idx', {allItems, user: req.user.name})
@@ -84,8 +84,8 @@ router.put('/:itemId', isLoggedIn, (req, res) => {
         })
         foundItem.save()
         console.log(`item edited ${JSON.stringify(foundItem)}`)
-        res.redirect(`/items/${foundItem.id}`)
     })
+    .then(res.redirect(`/items/${req.params.itemId}`))
     .catch(error => {
         console.log(error)
     })
@@ -93,10 +93,11 @@ router.put('/:itemId', isLoggedIn, (req, res) => {
 
 //render individual item
 //TO DO: add edit button visible only to the item's creator
-router.get('/:itemId', (req, res) => {
+router.get('/:itemId', isLoggedIn, (req, res) => {
     db.item.findByPk(req.params.itemId)
     .then(foundItem => { 
-        res.render('items/item', {item: foundItem})
+        console.log('req.user.id:', req.user.id)
+        res.render('items/item', {item: foundItem, user: req.user})
     })
 })
 

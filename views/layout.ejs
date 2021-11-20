@@ -16,7 +16,10 @@
                 <li><a href="/auth/login">Login</a></li>
               <% } else { %>
                 <li><a href="/auth/logout">Logout</a></li>
-                <li><a href="/profile">Profile</a></li>
+                <li><a href="/user/:userName">Your Store</a></li>
+                <li><a href="/user/cart/:userName">Cart</a></li>
+                <li><a href="/items">Browse</a></li>
+                <li><a href="/items/new">Sell</a></li>
               <% } %>
             </ul>
           </nav>
