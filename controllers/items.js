@@ -99,6 +99,9 @@ router.get('/:itemId', isLoggedIn, (req, res) => {
         console.log('req.user.id:', req.user.id)
         res.render('items/item', {item: foundItem, user: req.user})
     })
+    .catch(error => {
+        console.log(error)
+    })
 })
 
 //delete item
@@ -107,8 +110,8 @@ router.delete('/:itemId', isLoggedIn, (req,res) => {
     .then( foundItem => {
         foundItem.destroy()
         console.log(req.params.itemId, "th item destroyed")
-        res.redirect(`/user/${req.user.name}`)
     })
+    .then(res.redirect(`/user/${req.user.name}`))
     .catch(error => {
         console.log(error)
     })
