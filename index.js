@@ -11,6 +11,7 @@ const methodOverride = require('method-override');
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const db = require('./models')
+const { options } = require('./controllers/user')
 
 
 //method override
@@ -19,6 +20,9 @@ app.use(methodOverride('_method'));
 // views (ejs and layouts) set up
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+//css
+app.use(express.static('public'))
+app.use('/css', express.static(__dirname + 'public/css'))
 
 // body parser middelware
 app.use(express.urlencoded({extended:false}))
