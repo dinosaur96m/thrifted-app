@@ -1,23 +1,29 @@
-<!-- form for adding a new item to the db -->
-<form action="/items/<%= item.id %>/?_method=PUT" method="POST">
-
+<h2>edit</h2>
+<!-- form for updating an item -->
+<form class="form-floating" id="editForm" action="/items/<%= item.id %>/?_method=PUT" method="POST">
     <!-- <label for="imgRoute">New Image?</label>
     <input type="file" name="myFile"> -->
-
-    <label for="itemType">Garment Type</label>
-    <input type="text" id="itemType" name="type" value=<%= item.type %>>
-
-    <label for="itemSize">Size</label>
-    <input type="text" id="itemSize" name="size" value=<%= item.size %>>
-
-    <label for="itemBrand">Brand</label>
-    <input type="text" id="itemBrand" name="brand" value=<%= item.brand %>>
-
-    <label for="itemPrice">Price</label>
-    <input type="number" min="0" step=".10" id="itemPrice" name="price" value=<%= item.price%>>
-
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingType" placeholder="e.g. blouse, trousers etc."  name="type" value=<%= item.type %>>
+        <label for="floatingType">Garment Type</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingSize" placeholder="e.g. XL, 14"  name="size" value=<%= item.size %>>
+        <label for="floatingSize">Size</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingBrand" placeholder="brand"  name="brand" value=<%= item.brand %>>
+        <label for="floatingBrand">Brand</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="number" min="0" step=".05" class="form-control" id="floatingPrice" placeholder="00.00"  name="price" value=<%= item.price%>>
+    </div>
     <!-- <input type="number" id="itemId" value="<%= item.id %>" style="visibility: hidden;" name="id"> -->
 
-    <input type="submit" value="update item">
-    <img src=<%= item.imgUrl %> alt="<%=item.brand%> <%=item.type%>">
+    <input type="submit" class="btn btn-primary" value="update item">
 </form> 
+
+<div class="imgFrame">
+    <img class="soloImg" src=<%= item.imgUrl %> alt="<%=item.brand%> <%=item.type%>">
+</div>
+

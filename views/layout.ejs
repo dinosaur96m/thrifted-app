@@ -10,21 +10,23 @@
 </head>
 <body>
     <header>
-        <h1>Express Authentication Boilerplate</h1>
-        <nav>
-            <ul>
+        <h1>+hrif+ed</h1>
+        <nav class="navbar navbar-expand navbar-light">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <% if (!currentUser) { %>
-                <li><a href="/auth/signup">Signup</a></li>
-                <li><a href="/auth/login">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="/auth/signup">Signup</a></li>
+                <li class="nav-item"><a class="nav-link" href="/auth/login">Login</a></li>
               <% } else { %>
-                <li><a href="/auth/logout">Logout</a></li>
-                <li><a href="/user/:userName">Your Store</a></li>
-                <li><a href="/user/cart/:userName">Cart</a></li>
-                <li><a href="/items">Browse</a></li>
-                <li><a href="/items/new">Sell</a></li>
+                <li class="nav-item"><a class="nav-link" href="/auth/logout">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="/user/:userName">Your Store</a></li>
+                <li class="nav-item"><a class="nav-link" href="/user/cart/:userName">Cart</a></li>
+                <li class="nav-item"><a class="nav-link" href="/items">Browse</a></li>
+                <li class="nav-item"><a class="nav-link" href="/items/new">Sell</a></li>
               <% } %>
             </ul>
-          </nav>
+          </div>
+        </nav>
     </header>
     <%- include('partials/alerts') %>
     <%- body %> 

@@ -1,12 +1,52 @@
+h1 {
+    margin: 3rem;
+    font-size: 5em;
+    align-self: center;
+}
+
+h2 {
+    margin: 2rem;
+}
+
 body {
     background: sandybrown;
+    text-align: center;
+}
+
+.navbar.navbar-expand.navbar-light {
+    background: sandybrown;
+}
+.nav-link {
+    margin: .5rem;
+    font-size: 1em;
 }
 
 .card {
-    margin: 3rem;
+    margin: 3.5rem;
     /* width: 20 rem; */
 }
 
-.btn-primary {
+.btn.btn-primary {
     margin: 3px;
 }
+
+.imgFrame {
+    background: blueviolet;
+    max-width: 75%;
+    border-radius: 12px;
+    margin: 5px auto;
+}
+
+.soloImg {
+    max-width: 90%;
+    margin: 5%;
+    border-radius: 12px;
+
+}
+
+
+#navSupportedContent {
+    align-items: center;
+    background-color: sandybrown;
+}
+
