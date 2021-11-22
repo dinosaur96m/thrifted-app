@@ -9,12 +9,18 @@ h2 {
 }
 
 body {
-    background: sandybrown;
+    background: #ffcc99;
     text-align: center;
+    color: #b38f6b;
 }
 
+.btn {
+    background: #99ff99;
+    border-color: #6bb36b;
+    color: #b38f6b;
+}
 .navbar.navbar-expand.navbar-light {
-    background: sandybrown;
+    background: #99ff99;
 }
 .nav-link {
     margin: .5rem;
@@ -31,7 +37,7 @@ body {
 }
 
 .imgFrame {
-    background: blueviolet;
+    background: #6bb36b;
     max-width: 75%;
     border-radius: 12px;
     margin: 5px auto;

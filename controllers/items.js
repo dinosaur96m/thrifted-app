@@ -30,7 +30,7 @@ router.get('/', isLoggedIn, (req, res) => {
 })
 
 //render form for selling a new item
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
     res.render('items/new')
 })
 
