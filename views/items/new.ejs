@@ -1,22 +1,29 @@
-<h2>Sell</h2>
+<h2>sell</h2>
 
-<form enctype="multipart/form-data" action="/items" method="POST">
-    <label for="imgRoute">Select Image to upload</label>
-    <input type="file" name="myFile">
- 
-    <label for="itemType">Garment Type</label>
-    <input type="text" id="itemType" name="type">
+<!-- form for adding new items -->
+  <form enctype="multipart/form-data" class="form-floating" id="newForm" action="/items" method="POST">
+    <!-- add image -->
+    <div class="form-floating mb-3">
+      <input type="file" class="form-control" id="floatingFile" placeholder="No File Chosen" name="myFile">
+      <label for="floatingFile">select image to upload</label>
+    </div>
 
-    <label for="itemSize">Size</label>
-    <input type="text" id="itemSize" name="size">
-
-    <label for="itemBrand">Brand</label>
-    <input type="text" id="itemBrand" name="brand">
-
-    <label for="itemPrice">Price</label>
-    <input type="number" min="0" step=".10" id="itemPrice" name="price">
-
-    <input type="submit" class="btn btn-primary" value="add item to your store">
-
-  </form>
-
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingType" placeholder="e.g. blouse, trousers etc."  name="type">
+        <label for="floatingType">Garment Type</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingSize" placeholder="e.g. XL, 14"  name="size">
+        <label for="floatingSize">Size</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingBrand" placeholder="brand"  name="brand">
+        <label for="floatingBrand">Brand</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="number" min="0" step=".05" class="form-control" id="floatingPrice" placeholder="00.00"  name="price">
+        <label for="floatingPrice">Price</label>
+    </div>
+  
+    <input type="submit" class="btn btn-primary" value="sell item">
+</form> 
