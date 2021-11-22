@@ -58,7 +58,7 @@ app.use('/items', require('./controllers/items') )
 
 // home route
 app.get('/', (req, res)=>{
-    res.render('home')
+    res.render('auth/login')
 })
 
 // profile route

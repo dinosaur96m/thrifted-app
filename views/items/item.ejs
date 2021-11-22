@@ -1,20 +1,23 @@
-<% console.log('cart Id:' + item.cartId + '\n userId:' + user.id) %>
 <h2 id="brand-type"><%= item.brand %> <%= item.type %></h2>
-<img src="<%= item.imgUrl %>" alt="<%= item.type %>">
+
+<div class="imgFrame">
+    <img class="soloImg" src=<%= item.imgUrl %> alt="<%=item.brand%> <%=item.type%>">
+</div>
+
 <h3 id="size">size: <%= item.size %></h3>
 <h3 id="price">$<%= item.price %></h3>
 <!-- add to or remove item from cart-->
 <% if (('' + item.cartId) == ('' + user.id)) { %>
     <% console.log ('ids are a match!') %> 
     <form action="/user/cart/<%= user.name %>/?_method=PUT" method="POST">
-        <input type="submit" value="Remove From Cart"> 
+        <input type="submit" class="btn btn-primary" value="Remove From Cart"> 
         <input type="number" value="<%= item.id %>" style="display: none;" name="itemId">
     </form>
 <% } else if (('' + item.cartId) !== ('' + user.id)) { %>
     <%console.log('ids dont match')%>
     <form action="/user/cart/<%= user.name %>" method="POST">
         <input type="number" value="<%= item.id %>" style="display: none;" name="itemId">
-        <input type="submit" value="Add to Cart"> 
+        <input type="submit" class="btn btn-primary" value="Add to Cart"> 
     </form>
 <% } %> 
 
