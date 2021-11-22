@@ -1,9 +1,9 @@
 # Thrifted
-Thrifted is a plus-sized focused platform that enables users to buy and sell second-hand clothing.
+Thrifted is a plus-sized focused platform that enables users to buy and sell second-hand clothing. Users create an account to browse available items, and can sell their own by uploading an image and providing a few details. Once uploaded for sale, these items can be edited by their seller. Users can click on items' thumbnails for a closer look, and are able to add items to their cart from this view or the thumbnail. Items can only be added to one cart at a time, so unavailable items area not rendered on the "shop" page.
 
 ---
 ## Tech Stack
-The thrifted app will be built with the PEN stack: PotgresSQL, Express, and Node.JS.
+The thrifted app was built with the PEN stack: PotgresSQL, Express, and Node.JS. Photos arestored through cloudinary's upload API, and styling was completed with Bootsrap.
 
 
 ## Wireframes
@@ -13,14 +13,25 @@ The thrifted app will be built with the PEN stack: PotgresSQL, Express, and Node
 ![SignUp](./readmeImgs/signUpFrame.png)
 ![Sell](./readmeImgs/sellFrame.png)
 
+## User Journey Through Webpages
+
+![userJourney](./readmeImgs/userJourney.png)
+
+## RESTful Routes
+
+![routes](./readmeImgs/routes.png)
+
 ## API 
 Thrifted will utilize cloudinary's [upload API](https://cloudinary.com/documentation/image_upload_api_reference) to generate url's that host the images for items in the Thrifted store.
 
 ## ERD
 ![ERD](./readmeImgs/ERD.png)
 
+The user table has a one to many relationship with the items table and a one to one relationship with the carts table. The carts table also has a one to many relationship with the items table, since every cart can have many items, but each item can only be in one cart at this time. This is also why the items table has boolean column labeled, "availabele". When an is placed in a user's cart, "available" is set to "false" so that it will not be rendered with the index of shoppable items.
+
 ## API Invocation
-![index.js](./readmeImgs/apiInvocation.png)
+![index.js1](./readmeImgs/apiInvocation1.png)
+![index.js2](./readmeImgs/apiInvocation2.png)
 Using the uploader function from cloudinary's node package, I am able to send a local photo to be uploaded and hosted at a unique url through cloudinary.
 ## API Response
 ![api](./readmeImgs/apiResponse.png)
