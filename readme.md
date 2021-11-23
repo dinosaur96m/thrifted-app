@@ -1,5 +1,7 @@
 # Thrifted
-Thrifted is a plus-sized focused platform that enables users to buy and sell second-hand clothing. Users create an account to browse available items, and can sell their own by uploading an image and providing a few details. Once uploaded for sale, these items can be edited by their seller. Users can click on items' thumbnails for a closer look, and are able to add items to their cart from this view or the thumbnail. Items can only be added to one cart at a time, so unavailable items area not rendered on the "shop" page.
+Thrifted is a plus-sized focused platform that enables users to buy and sell second-hand clothing. In this MVP, users create an account to browse available items, and can sell their own by uploading an image and providing a few details. Once uploaded for sale, these items can be edited by their seller. Users can click on items' thumbnails for a closer look, and are able to add items to their cart from this view or the thumbnail. Items can only be added to one cart at a time, so unavailable items area not rendered on the "shop" page.
+
+Visit the latest live version of thrifted [here](https://thrifted-app.herokuapp.com/)
 
 ---
 ## Tech Stack
