@@ -28,6 +28,12 @@ body {
     font-size: 1em;
 }
 
+@media only screen and (max-width: 600px) {
+    .card {
+        margin: 3rem auto 3rem auto;
+    }
+}
+
 .card {
     margin: 3.5rem;
     /* width: 20 rem; */
