@@ -34,8 +34,8 @@ body {
 }
 
 .cardImage {
-    max-height: 75vh;
-    width: auto;
+    max-width: 90vw;
+    height: auto;
 }
 
 .btn.btn-primary {
