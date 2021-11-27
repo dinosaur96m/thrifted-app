@@ -29,9 +29,13 @@ body {
 }
 
 .card {
-    max-height: 75%;
     margin: 3.5rem;
     /* width: 20 rem; */
+}
+
+.cardImage {
+    max-height: 350px;
+    width: auto;
 }
 
 .btn.btn-primary {
