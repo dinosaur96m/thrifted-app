@@ -22,12 +22,14 @@ body {
 .navbar.navbar-expand.navbar-light {
     background: #99ff99;
 }
+
 .nav-link {
     margin: .5rem;
     font-size: 1em;
 }
 
 .card {
+    max-width: 90%;
     margin: 3.5rem;
     /* width: 20 rem; */
 }
