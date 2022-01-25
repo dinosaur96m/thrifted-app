@@ -6,13 +6,12 @@ const router = express.Router()
 //require and config cloudinary
 const cloudinary = require('cloudinary')
 cloudinary.config(process.env.CLOUDINARY_URL)
-//method override
-const methodOverride = require('method-override');
 //require multer
 const multer = require('multer');
 const upload = multer({ dest: './uploads/' });
 
-
+//method override
+const methodOverride = require('method-override');
 //middleware
 app.use(express.json())
 app.use(methodOverride('_method'));
